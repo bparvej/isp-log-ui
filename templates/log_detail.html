@@ -9,11 +9,14 @@
 <div class="container mt-4">
   <h4>Log Details</h4>
   <table class="table table-bordered">
-    <tr><th>Date</th><td>{{ log.date }}</td></tr>
-    <tr><th>Time</th><td>{{ log.time }}</td></tr>
-    <tr><th>IP</th><td>{{ log.ip }}</td></tr>
-    <tr><th>User</th><td>{{ log.username }}</td></tr>
-    <tr><th>Message</th><td>{{ log.message }}</td></tr>
+  
+    <tr><th>Date</th><td>{{ log[1] }}</td></tr>
+    <tr><th>Time</th><td>{{ log[2] }}</td></tr>
+    <tr><th>IP</th><td>{{ log[3] }}</td></tr>
+    <tr><th>User</th><td>{{ log[4] }}</td></tr>
+    <tr><th>Message</th><td>{{ log[5] }}</td></tr>
+
+  
   </table>
 
   <button onclick="window.print()" class="btn btn-success">Print</button>

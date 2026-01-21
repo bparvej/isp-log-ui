@@ -1,0 +1,32 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: logsentry-db
+    env_file:
+      - .env
+
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U isp_user"]
+      interval: 5s
+      retries: 5
+
+  web:
+    build: .
+    env_file:
+      - .env
+    container_name: logsentry-ui
+    depends_on:
+      postgres:
+        condition: service_healthy
+    
+    ports:
+      - "5000:5000"
+    restart: always
+
+volumes:
+  pgdata:
